@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 public class FigurasGeometricasApp extends JFrame {
     private JPanel figuraPanel;
     private JButton[] opcionesBotones;
-    private String[] opcionesFiguras = {"Cuadrado", "Círculo", "Triángulo", "Rectángulo"};
+    private String[] opcionesFiguras = {"Cuadrado", "Círculo", "Triángulo", "Rectángulo", "Pentágono", "Óvalo"};
     private String figuraCorrecta;
 
     public FigurasGeometricasApp() {
@@ -33,6 +33,7 @@ public class FigurasGeometricasApp extends JFrame {
         setSize(400, 400);
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
+        
 
         figuraPanel = new JPanel() {
             @Override
@@ -53,16 +54,29 @@ public class FigurasGeometricasApp extends JFrame {
             opcionesBotones[i].addActionListener(new BotonFiguraListener());
             panelBotones.add(opcionesBotones[i]);
         }
-
+        //Botón de retroceso
+        JButton btn_retro = new JButton("<<");
+        btn_retro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                prueba_1 Mprueba = new prueba_1();
+                Mprueba.setVisible(true);
+                dispose();
+            }
+        });
+        panelBotones.add(btn_retro);
+        
         add(panelBotones, BorderLayout.SOUTH);
 
         generarFiguraAleatoria();
           setIconImage(getIconImage());
     }
+    //Imagen de ícono
     public Image getIconImage(){
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/geometricas.jpg"));
         return retValue;
     }
+    //Generar Figuras aleatorias
     private void generarFiguraAleatoria() {
         Random random = new Random();
         int indiceFigura = random.nextInt(opcionesFiguras.length);
@@ -111,6 +125,16 @@ public class FigurasGeometricasApp extends JFrame {
             int x = (width - widthRect) / 2;
             int y = (height - heightRect) / 2;
             g.drawRect(x, y, widthRect, heightRect);
+        } else if (figuraCorrecta.equals("Pentágono")) {
+        int[] xPoints = {width / 2, width / 2 + 50, width / 2 + 30, width / 2 - 30, width / 2 - 50};
+        int[] yPoints = {30, height / 2 - 30, height / 2 + 50, height / 2 + 50, height / 2 - 30};
+        g.drawPolygon(xPoints, yPoints, 5);
+        } else if (figuraCorrecta.equals("Óvalo")) {
+        int widthOval = width - 40;
+        int heightOval = height - 40;
+        int x = (width - widthOval) / 2;
+        int y = (height - heightOval) / 2;
+        g.drawOval(x, y, widthOval, heightOval);
         }
     }
 

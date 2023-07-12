@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+
 public class prueba_1 extends javax.swing.JFrame {
 
     public prueba_1() {
@@ -26,6 +27,7 @@ public class prueba_1 extends javax.swing.JFrame {
         presentacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Juegos Lúdicos");
         setIconImage(getIconImage());
         setResizable(false);
 
@@ -72,6 +74,9 @@ public class prueba_1 extends javax.swing.JFrame {
         bt_mini3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 bt_mini3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_mini3MouseExited(evt);
             }
         });
         bt_mini3.addActionListener(new java.awt.event.ActionListener() {
@@ -155,8 +160,8 @@ public class prueba_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_torreActionPerformed
 
     private void bt_mini2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_mini2ActionPerformed
-        JuegoLaberinto MJL = new JuegoLaberinto();
-        MJL.setVisible(true);
+        JuegoLaberinto juegoLaberinto = new JuegoLaberinto();
+        juegoLaberinto.setVisible(true);
         dispose();
     }//GEN-LAST:event_bt_mini2ActionPerformed
 
@@ -180,6 +185,11 @@ public class prueba_1 extends javax.swing.JFrame {
         bt_mini3.setBackground(new Color(74,62,100));
         presentacion.setText("<html><center>El jugador debe elegir la opción que corresponde a la figura geométrica mostrada.<p>¡VAMOS A JUGARLO!");
     }//GEN-LAST:event_bt_mini3MouseEntered
+
+    private void bt_mini3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_mini3MouseExited
+        bt_mini3.setBackground(new Color(120,107,147));
+        presentacion.setText("");
+    }//GEN-LAST:event_bt_mini3MouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

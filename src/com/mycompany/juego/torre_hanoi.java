@@ -95,10 +95,12 @@ public class torre_hanoi extends javax.swing.JFrame {
         btn_resolver = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         TorreC = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Torre de Hanoi");
         setIconImage(getIconImage());
-        setPreferredSize(new java.awt.Dimension(471, 510));
+        setPreferredSize(new java.awt.Dimension(490, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(452, 466));
 
@@ -269,6 +271,13 @@ public class torre_hanoi extends javax.swing.JFrame {
             TorreC.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        jButton1.setText("<<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,6 +286,17 @@ public class torre_hanoi extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lbl_Mov, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lbl_MinMov, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_NumDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(188, 188, 188))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -303,18 +323,11 @@ public class torre_hanoi extends javax.swing.JFrame {
                                     .addComponent(btn_C_B, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btn_resolver, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(31, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Lbl_Mov, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Lbl_MinMov, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb_NumDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(188, 188, 188))))
+                        .addContainerGap(31, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +345,7 @@ public class torre_hanoi extends javax.swing.JFrame {
                     .addComponent(btn_B_A)
                     .addComponent(btn_A_C)
                     .addComponent(btn_A_B))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cb_NumDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -349,7 +362,8 @@ public class torre_hanoi extends javax.swing.JFrame {
                     .addComponent(btn_iniciar)
                     .addComponent(btn_reiniciar)
                     .addComponent(btn_resolver))
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -405,7 +419,7 @@ public class torre_hanoi extends javax.swing.JFrame {
                 PresentarTorreC();
                 ImprimirCantMov();
                 if(PilaTorreC.getSLContNodo() == CantDisc && ContNumMov == MinNumMov){
-                    JOptionPane.showMessageDialog(null, "¡Muy bien has cumplido con los mínimos de movimientos!\n\nAhora prueba algo más difícil.", "Felicitaciones",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "¡Muy bien has cumplido con los mínimos movimientos!\n\nAhora prueba algo más difícil.", "Felicitaciones",JOptionPane.INFORMATION_MESSAGE);
                 }else if (PilaTorreC.getSLContNodo() == CantDisc && ContNumMov != MinNumMov){
                     JOptionPane.showMessageDialog(null, "¡Muy bien lo has resuelto!\n\nAhora prueba resolverlo con los mínimos movimientos.", "Felicitaciones",JOptionPane.WARNING_MESSAGE);
                 }
@@ -650,6 +664,12 @@ public class torre_hanoi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_resolverActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        prueba_1 Mprueba = new prueba_1();
+        Mprueba.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     //REINICIAR JUEGO
     private void Reiniciar(){
         try{
@@ -789,6 +809,7 @@ public class torre_hanoi extends javax.swing.JFrame {
     private javax.swing.JButton btn_reiniciar;
     private javax.swing.JButton btn_resolver;
     private javax.swing.JComboBox<String> cb_NumDisco;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

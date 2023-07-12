@@ -1,12 +1,12 @@
 package com.mycompany.juego;
 
+
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
 
-public class JuegoLaberinto extends JFrame implements KeyListener {
+public class JuegoLaberinto extends JPanel implements KeyListener {
 
     private static final int ANCHO_VENTANA = 800;
     private static final int ALTO_VENTANA = 600;
@@ -21,9 +21,10 @@ public class JuegoLaberinto extends JFrame implements KeyListener {
     private int inicioY;
     private int finX;
     private int finY;
+    private JButton btnRetroceso;
+    
 
     public JuegoLaberinto() {
-        
         tablero = new char[ANCHO_TABLERO][ALTO_TABLERO];
         jugadorX = 1;
         jugadorY = 1;
@@ -37,19 +38,40 @@ public class JuegoLaberinto extends JFrame implements KeyListener {
         tablero[jugadorX][jugadorY] = '@';
 
         // Configurar la ventana del juego
-        setTitle("Juego de Laberinto");
-        setSize(ANCHO_VENTANA, ALTO_VENTANA);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+        setPreferredSize(new Dimension(ANCHO_VENTANA, ALTO_VENTANA));
+        setFocusable(true);
         addKeyListener(this);
-        setVisible(true);
-        setIconImage(getIconImage());
+        btnRetroceso = new JButton("<<");
+        btnRetroceso.setPreferredSize(new Dimension(60, 40));
+        btnRetroceso.setFocusable(false);
+        btnRetroceso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Window w = SwingUtilities.getWindowAncestor(JuegoLaberinto.this);
+                w.setVisible(false);
+                w.dispose();
+                prueba_1 Mprueba = new prueba_1();
+                Mprueba.setVisible(true);
+                
+            }
+        });
+        
+        // Agregar el botón de retroceso al panel principal
+        JPanel panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(new BorderLayout());
+        panelPrincipal.add(btnRetroceso, BorderLayout.SOUTH);
+        add(panelPrincipal);
+        
+        // Establecer el panel principal como el contenido principal de la ventana
+        JFrame frame = new JFrame("Laberinto matemático");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.getContentPane().add(this);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
-    public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/laberintoreal.jpg"));
-        return retValue;
-    }
+    
     private void generarLaberinto() {
         // Inicializar el tablero
         for (int i = 0; i < ANCHO_TABLERO; i++) {
@@ -124,8 +146,8 @@ public class JuegoLaberinto extends JFrame implements KeyListener {
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
         for (int i = 0; i < ANCHO_TABLERO; i++) {
             for (int j = 0; j < ALTO_TABLERO; j++) {
@@ -184,7 +206,7 @@ public class JuegoLaberinto extends JFrame implements KeyListener {
         // Verificar si el jugador llegó al punto de fin
         if (jugadorX == finX && jugadorY == finY) {
             JOptionPane.showMessageDialog(this, "¡Felicidades! Has llegado al final del laberinto.", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);
-            Operaciones.generarOperacion();
+            generarOperacion();
             reiniciarJuego();
         }
     }
